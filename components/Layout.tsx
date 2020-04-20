@@ -1,7 +1,9 @@
+import React from 'react';
 import Head from 'next/head';
 import Nav from './nav';
 
-const Layout = ({ children }) => {
+
+const Layout: React.FC = ({ children }) => {
   return (
     <div>
       <Head>
