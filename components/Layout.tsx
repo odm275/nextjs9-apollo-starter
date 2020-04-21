@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Nav from './nav';
 
 
+
 const Layout: React.FC = ({ children }) => {
   return (
     <div>
