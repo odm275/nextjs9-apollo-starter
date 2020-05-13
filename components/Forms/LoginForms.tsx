@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 import cookie from 'js-cookie';
 import { LOGIN_USER } from '../../lib/mutations/loginUser';
 import Router from 'next/router'
 
 const LoginForm = ({setLoginError, setLoginData, getAllFiles}: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const client = useApolloClient();
   const [username, setUsername] = useState('');
   const [pwd, setPwd] = useState('');
+
   const [loginUser] = useMutation(LOGIN_USER, {
     variables: {
       input: {

@@ -1,35 +1,41 @@
 import Layout from '../components/Layout';
+import gql from 'graphql-tag'
+import {useQuery} from '@apollo/react-hooks';
+import { withApollo } from '../lib/apollo';
 
+const ALL_USERS = gql `
+{
+  allUsers{
+    data{
+      _id
+      username
+      email
+    }
+  }
+}
+`;
 
 const Home = () => {
+  const { loading, error, data } = useQuery(ALL_USERS);
+  if(loading) return 'Loading ...'
+  console.log('error', data);
+  console.log('data', data);
 
   return (
     <Layout>
-      <div className="hero">
-        <p className="description">
-          To get started, edit <code>pages/index.js</code> and save to reload.
-        </p>
+     {data.allUsers.data.map(user => (
+       <div>
+       <p>
+        username: {user.username}
+       </p>
+       <p>
+         email: {user.email}
+       </p>
+       </div>
 
-        <div className="row">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Learn more about Next.js in the documentation.</p>
-          </a>
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Next.js Learn &rarr;</h3>
-            <p>Learn about Next.js by following an interactive tutorial!</p>
-          </a>
-          <a
-            href="https://github.com/zeit/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Find other example boilerplates on the Next.js GitHub.</p>
-          </a>
-        </div>
-      </div>
+     ))}
     </Layout>
   );
 };
 
-export default Home;
+export default withApollo({ssr:true})(Home);

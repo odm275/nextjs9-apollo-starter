@@ -18,14 +18,12 @@ export default function createApolloClient(initialState, ctx) {
     // get the authentication token from local storage if it exists
     const token = getNextCookies(ctx).token;
     // return the headers to the context so httpLink can read them
-    console.log('fauna secret in apollo client')
-    console.log(process.env.FAUNA_SERVER_KEY)
+    console.log('token', token)
+    const authorization = token ? `Bearer ${token}` : `Bearer ${process.env.FAUNA_SERVER_KEY}`;
     return {
       headers: {
         ...headers,
-        authorization: token
-          ? `Bearer ${token}`
-          : `Bearer ${process.env.FAUNA_SERVER_KEY}`,
+        authorization
       },
     };
   });
