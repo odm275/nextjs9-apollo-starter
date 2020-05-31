@@ -18,8 +18,8 @@ const ALL_USERS = gql `
 const Home = () => {
   const { loading, error, data } = useQuery(ALL_USERS);
   if(loading) return 'Loading ...'
-  console.log('error', data);
-  console.log('data', data);
+  console.log('error index', data);
+  console.log('data index', data);
 
   return (
     <Layout>

@@ -4,6 +4,8 @@ import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context';
 import fetch from 'isomorphic-unfetch'
 import cookie from 'cookie';
+import { getNextCookies } from './lib/helpers/getNextCookies';
+
 
 export default function createApolloClient(initialState, ctx) {
   // The `ctx` (NextPageContext) will only be present on the server.
@@ -18,7 +20,6 @@ export default function createApolloClient(initialState, ctx) {
     // get the authentication token from local storage if it exists
     const token = getNextCookies(ctx).token;
     // return the headers to the context so httpLink can read them
-    console.log('token', token)
     const authorization = token ? `Bearer ${token}` : `Bearer ${process.env.FAUNA_SERVER_KEY}`;
     return {
       headers: {
@@ -36,8 +37,3 @@ export default function createApolloClient(initialState, ctx) {
   })
 }
 
-const getNextCookies = ctx => {
-  const cookieStr =
-    ctx && ctx.req ? ctx.req.headers.cookie : window.document.cookie;
-  return cookie.parse(cookieStr || '');
-};

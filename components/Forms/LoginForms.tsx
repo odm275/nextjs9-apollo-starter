@@ -23,6 +23,7 @@ const LoginForm = ({setLoginError, setLoginData, getAllFiles}: any) => {
         secure: process.env.NODE_ENV === 'production',
         expires: 6,
       });
+      cookie.set('username', username);
       setLoginData(data);
       setIsLoggedIn(true);
       setLoginError(false);

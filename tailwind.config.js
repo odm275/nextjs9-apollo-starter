@@ -19,7 +19,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        cyan: "#9cdbff",
+        cyan: "#232c3b",
       },
       spacing: {
         "96": "24rem",
