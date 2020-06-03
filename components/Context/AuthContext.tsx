@@ -1,17 +1,14 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { getNextCookies } from '../../lib/helpers/getNextCookies';
 
-const defaultValues = {
-  username: null
-}
 
-export const AuthContext = createContext(defaultValues);
+//@ts-ignore
+export const AuthContext = createContext();
 export const AuthProvider = ({children, ctx}:any) => {
-  const { username } = getNextCookies(ctx).username;
+  const { username } = getNextCookies(ctx);
   return (
     <AuthContext.Provider value={{
-      ...defaultValues,
-      username
+      username: username
     }}>
       {children}
     </AuthContext.Provider>
