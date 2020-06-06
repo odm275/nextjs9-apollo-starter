@@ -18,7 +18,7 @@
     "apollo-client": "^2.6.8",
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
-    "apollo-server-micro": "^2.9.6",
+    "apollo-server-micro": "^2.14.2",
     "cookie": "^0.4.1",
     "dotenv": "^8.2.0",
     "graphql-tag": "^2.10.1",
